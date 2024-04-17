@@ -10,6 +10,12 @@ import userRoutes from './modules/user/user.route';
 
 const serverPort = process.env.SERVER_PORT;
 
+declare module "fastify" {
+    export interface FastifyInstance {
+        auth: any;
+    }
+}
+
 export const server = Fastify({
     logger: true
 });
