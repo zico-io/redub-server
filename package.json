@@ -12,7 +12,7 @@
         "@fastify/jwt": "^8.0.0",
         "@prisma/client": "^5.12.1",
         "@types/node": "^20.12.7",
-        "bcrypt": "^5.1.1",
+        "bcrypt-ts": "^5.0.2",
         "dotenv": "^16.4.5",
         "dotenv-expand": "^11.0.6",
         "fastify": "^4.26.2",
