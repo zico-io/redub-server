@@ -1,9 +1,11 @@
+import dotenv from 'dotenv';
+import dotenvExpand from 'dotenv-expand';
+
+dotenvExpand.expand(dotenv.config())
+
 import Fastify from "fastify";
 
 import userRoutes from './modules/user/user.route';
-
-import * as dotenv from 'dotenv';
-dotenv.config();
 
 const serverPort = process.env.SERVER_PORT;
 
