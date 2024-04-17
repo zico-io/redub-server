@@ -5,6 +5,7 @@ dotenvExpand.expand(dotenv.config())
 
 import Fastify from "fastify";
 
+import { userSchemas } from './modules/user/user.schema';
 import userRoutes from './modules/user/user.route';
 
 const serverPort = process.env.SERVER_PORT;
@@ -18,6 +19,10 @@ server.get('/healthcheck', async (request, reply) => {
 })
 
 const main = async (port = '3000') => {
+
+    for(const schema of userSchemas) {
+        server.addSchema(schema)
+    }
 
     server.register(userRoutes, { prefix: 'api/users' });
 
