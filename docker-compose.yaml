@@ -11,6 +11,15 @@ services:
     volumes:
       - ./postgresql:/var/lib/postgresql
 
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@redub.com
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASS}
+    ports:
+      - '5050:80'
+
   redub:
     build:
       context: ./
