@@ -1,6 +1,7 @@
 import prisma from "../../utils/prisma"
 import { CreateUserInput } from "./user.schema";
-import bcrypt from 'bcrypt-ts';
+// import bcrypt = require('bcrypt-ts');
+import bcrypt from 'bcryptjs';
 
 export const createUser = async (input: CreateUserInput) => {
 

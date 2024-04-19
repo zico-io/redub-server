@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { createUser, findUserByEmail, findUsers } from "./user.service";
 import { CreateUserInput, LoginInput } from "./user.schema";
-import bcrypt from 'bcrypt-ts';
+import bcrypt from 'bcryptjs';
 import { server } from "../../server";
 
 export const registerUserHandler = async (request: FastifyRequest<{Body: CreateUserInput}>, reply: FastifyReply) => {
