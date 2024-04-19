@@ -1,0 +1,14 @@
+services:
+  redub-server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    secrets:
+      - jwt_private
+      - jwt_public
+
+secrets:
+  jwt_private:
+    file: ./secrets/private.key
+  jwt_public:
+    file: ./secrets/public.key
