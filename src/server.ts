@@ -8,6 +8,7 @@ import Fastify, { FastifyReply, FastifyRequest } from "fastify";
 import { userSchemas } from './modules/user/user.schema';
 import userRoutes from './modules/user/user.route';
 import { FastifyJwtNamespace } from '@fastify/jwt';
+import { readFileSync } from 'fs';
 
 const port: string = process.env.SERVER_PORT || '3000'
 
@@ -23,7 +24,11 @@ export const server = Fastify({
 });
 
 server.register(require('@fastify/jwt'), {
-    secret: process.env.JWT_SECRET
+    secret: {
+        private: readFileSync(`/run/secrets/jwt_private`, 'utf8'),
+        public: readFileSync(`/run/secrets/jwt_public`, 'utf8'),
+    },
+    sign: { algorithm: 'RS256' }
 })
 
 server.decorate('auth', async (request: FastifyRequest, reply: FastifyReply) => {
