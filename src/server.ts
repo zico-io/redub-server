@@ -26,7 +26,7 @@ server.register(require('@fastify/jwt'), {
         private: readFileSync(`/run/secrets/jwt_private`, 'utf8'),
         public: readFileSync(`/run/secrets/jwt_public`, 'utf8'),
     },
-    sign: { algorithm: 'RS256' }
+    sign: { algorithms: ['RS256'] }
 })
 
 server.decorate('auth', async (request: FastifyRequest, reply: FastifyReply) => {
