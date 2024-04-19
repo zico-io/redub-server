@@ -10,8 +10,6 @@ import userRoutes from './modules/user/user.route';
 import { FastifyJwtNamespace } from '@fastify/jwt';
 import { readFileSync } from 'fs';
 
-const port: string = process.env.SERVER_PORT || '3000'
-
 declare module "fastify" {
     export interface FastifyInstance {
         auth: any;
@@ -43,7 +41,7 @@ server.get('/healthcheck', async (request, reply) => {
     return {status: 'OK'}
 })
 
-const main = async (port: string) => {
+const main = async () => {
 
     for(const schema of userSchemas) {
         server.addSchema(schema)
@@ -52,11 +50,11 @@ const main = async (port: string) => {
     server.register(userRoutes, { prefix: 'api/users' });
 
     try {
-        await server.listen({ port: parseInt(port), host: '0.0.0.0' })
+        await server.listen({ port: 3000, host: '0.0.0.0' })
     } catch(e) {
         server.log.error(e)
         process.exit(1)
     }
 }
 
-main(port)
+main()
