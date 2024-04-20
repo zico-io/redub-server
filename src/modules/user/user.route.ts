@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify"
 
-import { registerUserHandler, loginHandler, getUsersHandler } from './user.controller'
+import { registerUserHandler, loginHandler, getCurrentUserHandler, getUsersHandler } from './user.controller'
 import { $ref } from "./user.schema";
 
 const userRoutes = async (server: FastifyInstance) => {
@@ -22,6 +22,16 @@ const userRoutes = async (server: FastifyInstance) => {
             }
         }
     }, loginHandler)
+
+    server.get('/auth', {
+        preHandler: [server.auth],
+        schema: {
+            body: $ref('authSchema'),
+            response: {
+                200: $ref('loginResponseSchema')
+            }
+        }
+    }, getCurrentUserHandler)
 
     server.get('/', {
         preHandler: [server.auth],
