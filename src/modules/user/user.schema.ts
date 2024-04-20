@@ -36,7 +36,6 @@ const loginResponseSchema = z.object({
 })
 
 const authSchema = z.object({
-    accessToken: z.string(),
     id: z.string()
 })
 
