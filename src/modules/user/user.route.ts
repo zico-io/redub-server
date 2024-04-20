@@ -23,7 +23,7 @@ const userRoutes = async (server: FastifyInstance) => {
         }
     }, loginHandler)
 
-    server.get('/auth', {
+    server.post('/auth', {
         preHandler: [server.auth],
         schema: {
             body: $ref('authSchema'),
